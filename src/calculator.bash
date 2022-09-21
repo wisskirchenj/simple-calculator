@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# calculator stage 1
+# calculator stage 3
 
 function parse_input() {
   if [ $# -ne 3 ]; then
@@ -14,14 +14,14 @@ function parse_input() {
 }
 
 function check_number() {
-  format="^[+-]?[0-9]+$"
+  format="^[+-]?[0-9]+(\.[0-9]+)?$"
   if [[ ! $1 =~ $format ]]; then
     error_exit
   fi
 }
 
 function check_operator() {
-  format="^[+*/-]$"  # '-' must be first or last in the brackets !
+  format="^[+^*/-]$"  # '-' must be first or last in the brackets !
   if [[ ! "$1" =~ $format ]]; then
     error_exit
   fi
@@ -36,4 +36,4 @@ echo "Enter an arithmetic operation:"
 read operation
 set -f # avoid * globbing of the mult. operator
 parse_input $operation
-echo `expr $left_operand $operator $right_operand`
+echo "scale=2; $left_operand $operator $right_operand" | bc -l

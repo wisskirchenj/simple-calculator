@@ -14,6 +14,12 @@ function do_calc() {
     assert_output --partial 120
 }
 
+@test "subtraction parsed" {
+    set -f
+    run do_calc "5 - -25"
+    assert_output --partial 30
+}
+
 @test "multiplication parsed" {
     set -f
     run do_calc "12 * -3"
@@ -31,9 +37,24 @@ function do_calc() {
     assert_output --partial '24'
 }
 
+@test "float division parsed" {
+    run do_calc "22 / -7"
+    assert_output --partial '-3.14'
+}
+
+@test "2nd float division parsed" {
+    run do_calc "5.4 / 2.8"
+    assert_output --partial '1.92'
+}
+
+@test "power function parsed" {
+    run do_calc "2 ^ 5"
+    assert_output --partial '32'
+}
+
 # ---------- error case testing -------
-@test "float is rejected" {
-    run do_calc "33.2 / -12"
+@test "invalid float is rejected" {
+    run do_calc "33..2 / -12"
     assert_output --partial 'Operation check failed!'
 }
 

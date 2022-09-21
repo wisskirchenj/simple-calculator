@@ -15,6 +15,7 @@ The sources of main project tasks (4 stages) and testing.
 
 The toy project implements a simple calculator with bash.
 Stage 2: enter a simple operation with blanks separated, i.e. "2 + 45" or "-2 * -45" or "4 / 2".
+Stage 3: also float values are parsed and allowed - result is taken using bc (basic calculator tool from bash)
 
 Run tests using bats
 
@@ -32,3 +33,5 @@ Have fun!
 setup of BATS testing 
 
 21.09.22 Stage 2 completed - parse the operation and print the result - or a failed check message from parsing. teststarter added.
+
+21.09.22 Stage 3 completed - parse and allow float values now - test cases added
