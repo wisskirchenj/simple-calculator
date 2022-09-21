@@ -10,24 +10,25 @@ function do_calc() {
 
 # ---------- happy case testing -------
 @test "addition parsed" {
-    run do_calc "33 + 45"
-    assert_output --partial 'Operation check passed!'
-}
-
-@test "subtraction parsed" {
-    run do_calc "-33 - 45"
-    assert_output --partial 'Operation check passed!'
+    run do_calc "55 + 65"
+    assert_output --partial 120
 }
 
 @test "multiplication parsed" {
     set -f
+    run do_calc "12 * -3"
+    assert_output --partial 36
+}
+
+@test "multiplication 2 parsed" {
+    set -f
     run do_calc "0 * -45"
-    assert_output --partial 'Operation check passed!'
+    assert_output --partial 0
 }
 
 @test "division parsed" {
-    run do_calc "+33 / -1245"
-    assert_output --partial 'Operation check passed!'
+    run do_calc "48 / 2"
+    assert_output --partial '24'
 }
 
 # ---------- error case testing -------

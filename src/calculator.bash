@@ -36,5 +36,4 @@ echo "Enter an arithmetic operation:"
 read operation
 set -f # avoid * globbing of the mult. operator
 parse_input $operation
-echo "Operation check passed!"
-# the result: echo `expr $left_operand $operator $right_operand`
+echo `expr $left_operand $operator $right_operand`

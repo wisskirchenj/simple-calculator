@@ -14,6 +14,9 @@ The sources of main project tasks (4 stages) and testing.
 ## Program description
 
 The toy project implements a simple calculator with bash.
+Stage 2: enter a simple operation with blanks separated, i.e. "2 + 45" or "-2 * -45" or "4 / 2".
+
+Run tests using bats
 
 Have fun!
 
@@ -27,3 +30,5 @@ Have fun!
 
 17.09.22 Stage 1 completed - parsing of calc operation line: posix regexp, functions in bash, switch the shell globbing on/off,
 setup of BATS testing 
+
+21.09.22 Stage 2 completed - parse the operation and print the result - or a failed check message from parsing. teststarter added.
