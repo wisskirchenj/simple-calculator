@@ -14,9 +14,13 @@ The sources of main project tasks (4 stages) and testing.
 ## Program description
 
 The toy project implements a simple calculator with bash.
+
 Stage 1: just parsing and validation of operation given.
+
 Stage 2: enter a simple operation with blanks separated, i.e. "2 + 45" or "-2 * -45" or "4 / 2".
+
 Stage 3: also float values are parsed and allowed - result is taken using bc (basic calculator tool from bash)
+
 Stage 4: instead of single operation now do a CL-loop and save/append also to a history file (using tee-command).
 
 Run tests using bats
