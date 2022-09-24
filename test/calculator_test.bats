@@ -2,13 +2,27 @@ setup() {
     load 'test_helper/bats-support/load'
     load 'test_helper/bats-assert/load'
     SRC_DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/../src"
+    rm -f operation_history.txt
 }
 
 function do_calc() {
-    echo $1 | bash $SRC_DIR/calculator.bash
+    echo -e $1"\nquit" | bash $SRC_DIR/calculator.bash
+}
+
+function history_written() {
+    if [[ -e operation_history.txt ]]; then
+        return 0
+    fi
+    return 1
 }
 
 # ---------- happy case testing -------
+@test "history written" {
+    refute history_written
+    run do_calc ""
+    assert history_written
+}
+
 @test "addition parsed" {
     run do_calc "55 + 65"
     assert_output --partial 120
@@ -50,6 +64,13 @@ function do_calc() {
 @test "power function parsed" {
     run do_calc "2 ^ 5"
     assert_output --partial '32'
+}
+
+@test "normal output" {
+    run do_calc
+    assert_output --partial 'Welcome to the basic calculator!'
+    assert_output --partial "Enter an arithmetic operation or type 'quit' to quit:"
+    assert_output --partial 'Goodbye!'
 }
 
 # ---------- error case testing -------
